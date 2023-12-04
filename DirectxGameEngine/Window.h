@@ -1,5 +1,7 @@
 #pragma once
+#pragma comment(lib,"d3d11.lib") 
 #include <Windows.h>
+
 
 class Window
 {
@@ -12,8 +14,8 @@ public:
 	bool isRun();
 
 	//EVENT METHODS
-	virtual void onCreate()=0;
-	virtual void onUpdate()=0;
+	virtual void onCreate();
+	virtual void onUpdate();
 	virtual void onDestroy();
 	~Window();
 

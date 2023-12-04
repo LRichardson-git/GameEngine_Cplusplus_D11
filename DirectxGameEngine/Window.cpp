@@ -51,8 +51,8 @@ bool Window::init()
 	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hInstance = NULL;
-	wc.lpszClassName = "MyWindowClass";
-	wc.lpszMenuName = "";
+	wc.lpszClassName = L"MyWindowClass";
+	wc.lpszMenuName = L"";
 	wc.style = NULL;
 	wc.lpfnWndProc = &WndProc; //can be used to handle events of the window
 
@@ -65,7 +65,7 @@ bool Window::init()
 		return false;
 
 	//will return zero if does not create window
-	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, "MyWindowClass", "DirectX GameEngine", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
+	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"DirectX GameEngine", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 		NULL, NULL, NULL, this);
 
 	if (!m_hwnd)
@@ -114,6 +114,14 @@ bool Window::release()
 bool Window::isRun()
 {
 	return m_is_run;
+}
+
+void Window::onCreate()
+{
+}
+
+void Window::onUpdate()
+{
 }
 
 void Window::onDestroy()
