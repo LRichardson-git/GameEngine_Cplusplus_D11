@@ -26,7 +26,7 @@ bool GraphicsEngine::init()
 	HRESULT res = 0;
 	//create device to draw resources
 	for (UINT driver_type_index = 0; driver_type_index < num_driver_types;) {
-																																	//outputs
+																																				  //outputs
 		HRESULT res = D3D11CreateDevice(NULL, driver_types[driver_type_index], NULL, NULL, feature_levels, num_feature_levels, D3D11_SDK_VERSION, &m_d3d_device, &m_feature_level, &m_imm_context);
 
 		if (SUCCEEDED(res)) //if create device break loop
@@ -38,6 +38,12 @@ bool GraphicsEngine::init()
 
 	if (FAILED(res))
 		return false;
+
+	&m_feature_level;
+
+	m_d3d_device->QueryInterface(__uuidof(IDXGIDevice), (void**)(&m_dxgi_device)); //retrieving the IDXGIDevice interface from the Direct3D device object stored in m_d3d_device and storing it in m_dxgi_device
+	m_dxgi_device->GetParent(__uuidof(IDXGIAdapter), (void**)&m_dxgi_adapter);
+	m_dxgi_adapter->GetParent(__uuidof(IDXGIFactory), (void**)&m_dxgi_factory);
 
 	return true;
 }
