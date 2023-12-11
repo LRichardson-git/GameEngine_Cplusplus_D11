@@ -15,6 +15,8 @@ public:
 	bool release();
 	~GraphicsEngine();
 public:
+	SwapChain *createSwapChain();
+public:
 	static GraphicsEngine* get();
 	
 private:

@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.h"
 #include "GraphicsEngine.h"
+#include "SwapChain.h"
 
 class AppWindow : public Window
 {
@@ -17,5 +18,7 @@ public:
 
 	virtual void onDestroy() override;
 
+private:
+	SwapChain* m_swap_chain;
 };
 
