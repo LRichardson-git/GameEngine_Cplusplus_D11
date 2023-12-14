@@ -1,5 +1,6 @@
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
+#include "DeviceContext.h"
 
 GraphicsEngine::GraphicsEngine()
 {
@@ -26,6 +27,7 @@ bool GraphicsEngine::init()
 	
 	HRESULT res = 0;
 	//create device to draw resources
+	ID3D11DeviceContext* m_imm_context;
 	for (UINT driver_type_index = 0; driver_type_index < num_driver_types;) {
 																																				  //outputs
 		HRESULT res = D3D11CreateDevice(NULL, driver_types[driver_type_index], NULL, NULL, feature_levels, num_feature_levels, D3D11_SDK_VERSION, &m_d3d_device, &m_feature_level, &m_imm_context);
@@ -40,6 +42,10 @@ bool GraphicsEngine::init()
 	if (FAILED(res))
 		return false;
 
+	
+	m_imm_device_context = new DeviceContext(m_imm_context);
+	
+	
 	&m_feature_level;
 
 	m_d3d_device->QueryInterface(__uuidof(IDXGIDevice), (void**)(&m_dxgi_device)); //retrieving the IDXGIDevice interface from the Direct3D device object stored in m_d3d_device and storing it in m_dxgi_device
@@ -56,7 +62,7 @@ bool GraphicsEngine::release()
 	m_dxgi_device->Release();
 	m_dxgi_adapter->Release();
 
-	m_imm_context->Release();
+	m_imm_device_context->release();
 	m_d3d_device->Release();
 	return true;
 }

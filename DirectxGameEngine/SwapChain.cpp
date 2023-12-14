@@ -32,6 +32,9 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 		return false;
 
 
+	m_swap_chain->GetBuffer()
+
+
 	return true;
 }
 
