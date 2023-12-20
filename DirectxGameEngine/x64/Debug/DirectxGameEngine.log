@@ -1,7 +1,2 @@
 ﻿  AppWindow.cpp
-  GraphicsEngine.cpp
-  main.cpp
-  SwapChain.cpp
-  Window.cpp
-  Generating Code...
   DirectxGameEngine.vcxproj -> E:\git\DirectXGameEngine\GameEngine_Cplusplus_D11\x64\Debug\DirectxGameEngine.exe
