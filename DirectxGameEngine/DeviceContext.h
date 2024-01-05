@@ -9,6 +9,7 @@ public:
 	DeviceContext(ID3D11DeviceContext* device_context);
 	bool clearRenderTargetColour(SwapChain* swap_chain, float r, float g, float b, float alpha);
 
+
 	bool release();
 	~DeviceContext();
 
