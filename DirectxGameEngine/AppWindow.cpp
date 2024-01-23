@@ -31,8 +31,12 @@ void AppWindow::onCreate()
 	vertex list[] = {
 		//X - Y - Z
 		{-0.5f,-0.5f,0.0f}, //pos1
-		{0.0f,0.5f,0.0f}, //pos2
-		{0.5f,-0.5f,0.0f} //pos3
+		{-0.5f,0.5f,0.0f}, //pos2
+		{0.5f,-0.5f,0.0f}, //pos3
+
+		{0.5f,0.5f,0.0f} //4  for strip mode
+		//{0.5f,-0.5f,0.0f}, //pos2
+		//{-0.5f,-0.5f,0.0f} //pos3
 	};
 
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
@@ -52,7 +56,7 @@ void AppWindow::onCreate()
 void AppWindow::onUpdate()
 {
 	Window::onUpdate();
-	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColour(this->m_swap_chain,1,1,0,1); //clear to choosen colour
+	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColour(this->m_swap_chain,1,0,0,1); //clear to choosen colour
 
 	//SET VIEWPORT OF RENDER TARGET IN WHICH WE HAVE TO DRAW
 	RECT rc = this->getClientWindowRect();
@@ -63,7 +67,7 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
 	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTraingleList(m_vb->getSizeVertexList(), 0);
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawTraingleStrip(m_vb->getSizeVertexList(), 0);
 	m_swap_chain->present(true);
 }
 
